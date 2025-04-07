@@ -8,5 +8,21 @@
     "modelEncodings": {
         "azure:gpt-4o_2024-11-20": "gpt-4o",
         "azure:gpt-4o-mini_2024-07-18": "gpt-4o-mini"
+    },
+    "providers": {
+        "ollama": {
+            "baseUrl": "http://host.docker.internal:11434",
+            "models": {
+                "llama3": "llama3",
+                "phi3": "phi3",
+                "mistral": "mistral"
+            }
+        }
+    },
+    "defaultProvider": "ollama",
+    "defaultModel": "phi3",
+    "gpu": {
+        "enabled": true,
+        "device": "host"
     }
 }

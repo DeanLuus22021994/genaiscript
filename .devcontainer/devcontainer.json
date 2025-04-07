@@ -1,11 +1,12 @@
 {
+    "name": "genaiscript-workspace",
     "image": "mcr.microsoft.com/devcontainers/javascript-node:20",
-    "postCreateCommand": "yarn install --frozen-lockfile --prefer-offline && yarn install:playwright",
+    "postCreateCommand": "yarn install --frozen-lockfile --prefer-offline && yarn install:playwright && yarn ffmpeg:install",
     "customizations": {
         "vscode": {
             "extensions": [
                 "GitHub.copilot-chat",
-                "esbenp.prettier-vscode",
+                "esben.prettier-vscode",
                 "dbaeumer.vscode-eslint",
                 "bierner.markdown-mermaid",
                 "yoavbls.pretty-ts-errors",
@@ -16,16 +17,72 @@
                 "GitHub.vscode-pull-request-github",
                 "usernamehw.errorlens",
                 "goessner.mdmath"
-            ]
+            ],
+            "settings": {
+                "python.defaultInterpreterPath": "/usr/local/bin/python",
+                "python.linting.enabled": true,
+                "python.linting.pylintEnabled": true,
+                "editor.formatOnSave": true,
+                "editor.codeActionsOnSave": {
+                    "source.fixAll.eslint": "always"
+                },
+                "typescript.tsdk": "node_modules/typescript/lib"
+            }
         }
     },
     "features": {
-        "ghcr.io/devcontainers/features/common-utils:2": {},
-        "ghcr.io/devcontainers/features/git:1": {},
-        "ghcr.io/ghcr.io/devcontainers/features/github-cli:1.0.13": {},
-        "ghcr.io/devcontainers/features/docker-in-docker:2": {},
-        "ghcr.io/devcontainers/features/azure-cli:1.2.6": {},
-        "ghcr.io/devcontainers/features/python:1.7.0": {},
-        "ghcr.io/devcontainers-extra/features/ffmpeg-apt-get:1.0.16": {}
+        "ghcr.io/devcontainers/features/common-utils:2": {
+            "installZsh": true,
+            "configureZshAsDefaultShell": true,
+            "installOhMyZsh": true,
+            "upgradePackages": true,
+            "username": "automatic"
+        },
+        "ghcr.io/devcontainers/features/git:1": {
+            "version": "latest",
+            "ppa": false
+        },
+        "ghcr.io/devcontainers/features/github-cli:1.0.14": {
+            "version": "latest"
+        },
+        "ghcr.io/devcontainers/features/python:1.7.1": {
+            "version": "latest",
+            "installTools": true,
+            "optimize": true,
+            "installJupyterlab": true,
+            "installIPython": true,
+            "installPoetry": true
+        },
+        "ghcr.io/devcontainers-extra/features/ffmpeg-apt-get:1.0.16": {
+            "installNvidiaCodecs": true
+        },
+        "ghcr.io/devcontainers/features/azure-cli:1": {
+            "version": "latest"
+        },
+        "ghcr.io/devcontainers/features/nvidia-cuda:1": {},
+        "ghcr.io/devcontainers/features/docker-in-docker:2": {
+            "version": "latest",
+            "moby": true,
+            "dockerDashComposeVersion": "v2",
+            "installDockerBuildx": true
+        },
+        "ghcr.io/devcontainers/features/node:1": {
+            "version": "lts",
+            "nodeGypDependencies": true
+        }
+    },
+    "mounts": [
+        "source=/var/run/docker.sock,target=/var/run/docker.sock,type=bind",
+        "source=${localEnv:HOME}${localEnv:USERPROFILE}/.ollama,target=/home/node/.ollama,type=bind,consistency=cached"
+    ],
+    "remoteEnv": {
+        "OLLAMA_HOST": "http://host.docker.internal:11434",
+        "PYTHONPATH": "${containerWorkspaceFolder}",
+        "NODE_OPTIONS": "--max-old-space-size=8192"
+    },
+    "hostRequirements": {
+        "gpu": "optional",
+        "memory": "8gb",
+        "storage": "32gb"
     }
 }
