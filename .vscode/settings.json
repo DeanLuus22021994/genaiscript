@@ -121,5 +121,6 @@
     "extensions.ignoreRecommendations": true,
     "extensions.autoCheckUpdates": true,
     "extensions.autoUpdate": true,
-    "extensions.preferPreReleases": true
+    "extensions.preferPreReleases": true,
+    "files.autoSave": "onFocusChange"
 }
