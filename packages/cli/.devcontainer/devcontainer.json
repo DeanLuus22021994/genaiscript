@@ -9,10 +9,19 @@
                 "github.vscode-github-actions",
                 "esbenp.prettier-vscode",
                 "ms-python.python"
-            ]
+            ],
+            "settings": {
+                // Extension management settings
+                "extensions.ignoreRecommendations": false,
+                "extensions.autoCheckUpdates": true,
+                "extensions.autoUpdate": true,
+                "extensions.preferPreReleases": true
+            }
         }
     },
-    "forwardPorts": [8003],
+    "forwardPorts": [
+        8003
+    ],
     "features": {
         "ghcr.io/devcontainers/features/common-utils:2": {},
         "ghcr.io/devcontainers/features/git:1": {},
@@ -23,5 +32,8 @@
         "ghcr.io/ghcr.io/devcontainers/features/github-cli:1.0.13": {}
     },
     "postStartCommand": "npm install -g genaiscript",
-    "runArgs": ["--env-file", ".env.genaiscript"]
+    "runArgs": [
+        "--env-file",
+        ".env.genaiscript"
+    ]
 }

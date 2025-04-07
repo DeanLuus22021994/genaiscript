@@ -92,9 +92,9 @@
     ],
     "sarif-viewer.connectToGithubCodeScanning": "on",
     "cSpell.language": "en,en-US",
-    "cSpell.enableFiletypes": [
-        "!json"
-    ],
+    "cSpell.enabledFileTypes": {
+        "json": false
+    },
     "files.associations": {
         ".gitignore.genai": "ignore",
     },
@@ -116,5 +116,10 @@
             "parser": "markdown"
         }
     },
-    "peacock.color": "#f9e64f"
+    "peacock.color": "#f9e64f",
+    // Extension management settings
+    "extensions.ignoreRecommendations": false,
+    "extensions.autoCheckUpdates": true,
+    "extensions.autoUpdate": true,
+    "extensions.preferPreReleases": true
 }

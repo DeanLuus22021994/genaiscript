@@ -26,7 +26,12 @@
                 "editor.codeActionsOnSave": {
                     "source.fixAll.eslint": "always"
                 },
-                "typescript.tsdk": "node_modules/typescript/lib"
+                "typescript.tsdk": "node_modules/typescript/lib",
+                // Extension management settings
+                "extensions.ignoreRecommendations": false,
+                "extensions.autoCheckUpdates": true,
+                "extensions.autoUpdate": true,
+                "extensions.preferPreReleases": true
             }
         }
     },
