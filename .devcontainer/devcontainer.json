@@ -1,7 +1,24 @@
 {
     "name": "genaiscript-workspace",
     "image": "mcr.microsoft.com/devcontainers/javascript-node:20",
-    "postCreateCommand": "yarn install --frozen-lockfile --prefer-offline && yarn install:playwright && yarn ffmpeg:install",
+    "build": {
+        "dockerfile": ".devcontainer/Dockerfile",
+        "context": "..",
+        "args": {
+            "NODE_VERSION": "20",
+            "PYTHON_VERSION": "3.11"
+        },
+        "cacheFrom": "ghcr.io/zatrust/genaiscript-devcontainer:latest"
+    },
+    "postCreateCommand": "bash .devcontainer/scripts/post-create.sh",
+    "postStartCommand": "bash .devcontainer/scripts/post-start.sh",
+    "waitFor": "postCreateCommand",
+    // Dotfiles repository configuration
+    "dotfiles": {
+        "repository": "https://github.com/ZaTrust/dotfiles.git",
+        "installCommand": "install.sh",
+        "targetPath": "~/dotfiles"
+    },
     "customizations": {
         "vscode": {
             "extensions": [
@@ -31,7 +48,11 @@
                 "extensions.ignoreRecommendations": true,
                 "extensions.autoCheckUpdates": true,
                 "extensions.autoUpdate": true,
-                "extensions.preferPreReleases": true
+                "extensions.preferPreReleases": true,
+                // Configure settings sync
+                "settingsSync.keybindingsPerPlatform": false,
+                "settingsSync.ignoredExtensions": [],
+                "settingsSync.ignoredSettings": []
             }
         }
     },
@@ -78,7 +99,16 @@
     },
     "mounts": [
         "source=/var/run/docker.sock,target=/var/run/docker.sock,type=bind",
-        "source=${localEnv:HOME}${localEnv:USERPROFILE}/.ollama,target=/home/node/.ollama,type=bind,consistency=cached"
+        "source=${localEnv:HOME}${localEnv:USERPROFILE}/.ollama,target=/home/node/.ollama,type=bind,consistency=cached",
+        // VS Code settings mounts
+        "source=${localEnv:HOME}${localEnv:USERPROFILE}/.vscode,target=/home/node/.vscode,type=bind,consistency=cached",
+        "source=${localEnv:HOME}${localEnv:USERPROFILE}/.vscode-insiders,target=/home/node/.vscode-insiders,type=bind,consistency=cached",
+        "source=${localEnv:HOME}${localEnv:USERPROFILE}/.config/Code/User,target=/home/node/.config/Code/User,type=bind,consistency=cached,readonly",
+        "source=${localEnv:HOME}${localEnv:USERPROFILE}/.config/Code - Insiders/User,target=/home/node/.config/Code - Insiders/User,type=bind,consistency=cached,readonly",
+        "source=${localEnv:HOME}${localEnv:USERPROFILE}/AppData/Roaming/Code/User,target=/home/node/.config/Code/User,type=bind,consistency=cached,readonly",
+        "source=${localEnv:HOME}${localEnv:USERPROFILE}/AppData/Roaming/Code - Insiders/User,target=/home/node/.config/Code - Insiders/User,type=bind,consistency=cached,readonly",
+        "source=${localEnv:HOME}${localEnv:USERPROFILE}/Library/Application Support/Code/User,target=/home/node/.config/Code/User,type=bind,consistency=cached,readonly",
+        "source=${localEnv:HOME}${localEnv:USERPROFILE}/Library/Application Support/Code - Insiders/User,target=/home/node/.config/Code - Insiders/User,type=bind,consistency=cached,readonly"
     ],
     "remoteEnv": {
         "OLLAMA_HOST": "http://host.docker.internal:11434",

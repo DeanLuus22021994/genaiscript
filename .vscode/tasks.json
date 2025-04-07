@@ -1,37 +1,83 @@
 {
-    // See https://go.microsoft.com/fwlink/?LinkId=733558
-    // for the documentation about the tasks.json format
-    "version": "2.0.0",
-    "tasks": [
-        {
-            "label": "gcm",
-            "type": "shell",
-            "command": "node packages/cli/built/genaiscript.cjs run gcm",
-            "detail": "git commit flow with automatic message",
-            "problemMatcher": "$tsc",
-            "presentation": {
-                "echo": true,
-                "reveal": "always",
-                "focus": true,
-                "panel": "shared",
-                "showReuseMessage": false,
-                "clear": true
-            }
-        },
-        {
-            "label": "iat",
-            "type": "shell",
-            "command": "node packages/cli/built/genaiscript.cjs run iat",
-            "detail": "generate image alt text in markdown files",
-            "problemMatcher": "$tsc",
-            "presentation": {
-                "echo": true,
-                "reveal": "always",
-                "focus": false,
-                "panel": "shared",
-                "showReuseMessage": false,
-                "clear": true
-            }
-        }
-    ]
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "gcm",
+      "type": "shell",
+      "command": "node packages/cli/built/genaiscript.cjs run gcm",
+      "detail": "git commit flow with automatic message"
+    },
+    {
+      "label": "iat",
+      "type": "shell",
+      "command": "node packages/cli/built/genaiscript.cjs run iat",
+      "detail": "generate image alt text in markdown files"
+    },
+    {
+      "label": "Run Action Locally",
+      "type": "shell",
+      "command": ".devcontainer/scripts/actions/run-action-locally.sh",
+      "args": [
+        "--workflow",
+        "${input:workflowFile}",
+        "--event",
+        "${input:eventType}"
+      ],
+      "detail": "Run a GitHub Action workflow locally using Act"
+    },
+    {
+      "label": "Setup GitHub Runner",
+      "type": "shell",
+      "command": "sudo",
+      "args": [
+        ".devcontainer/scripts/actions/setup-runner.sh",
+        "--url",
+        "${input:repoUrl}",
+        "--token",
+        "${input:runnerToken}",
+        "--name",
+        "${input:runnerName}"
+      ],
+      "detail": "Set up a GitHub Actions self-hosted runner"
+    },
+    {
+      "label": "Start GitHub Runner",
+      "type": "shell",
+      "command": "cd /opt/actions-runner && sudo ./run.sh",
+      "isBackground": true,
+      "detail": "Start the GitHub Actions self-hosted runner"
+    }
+  ],
+  "inputs": [
+    {
+      "id": "workflowFile",
+      "description": "GitHub workflow file to run",
+      "default": ".github/workflows/ci.yml",
+      "type": "promptString"
+    },
+    {
+      "id": "eventType",
+      "description": "Event type to trigger",
+      "default": "push",
+      "type": "pickString",
+      "options": ["push", "pull_request", "release", "workflow_dispatch"]
+    },
+    {
+      "id": "repoUrl",
+      "description": "GitHub repository URL",
+      "default": "https://github.com/ZaTrust/genaiscript",
+      "type": "promptString"
+    },
+    {
+      "id": "runnerToken",
+      "description": "GitHub runner registration token",
+      "type": "promptString"
+    },
+    {
+      "id": "runnerName",
+      "description": "GitHub runner name",
+      "default": "genaiscript-runner",
+      "type": "promptString"
+    }
+  ]
 }

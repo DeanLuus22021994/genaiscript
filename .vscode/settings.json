@@ -1,126 +1,82 @@
 {
-    "devicescript.devtools.autoStart": false,
-    "cSpell.words": [
-        "adoinfo",
-        "Agentic",
-        "AIREQUEST",
-        "ANYJS",
-        "Apim",
-        "arrayify",
-        "Automatable",
-        "bitindex",
-        "Chunker",
-        "cmds",
-        "codelion",
-        "Codespaces",
-        "compactable",
-        "contentinfo",
-        "Costeable",
-        "createfile",
-        "demux",
-        "devcontainers",
-        "dockerode",
-        "docstrings",
-        "domcontentloaded",
-        "doptions",
-        "Entra",
-        "Evals",
-        "execa",
-        "frontmatter",
-        "genai",
-        "Genaiscript",
-        "genaisrc",
-        "ghcliinfo",
-        "ghinfo",
-        "Gruber",
-        "hostpath",
-        "huggingface",
-        "icontains",
-        "Jamba",
-        "labelledby",
-        "limitrows",
-        "LITELLM",
-        "LLAMAFILE",
-        "llmify",
-        "llmrequest",
-        "localai",
-        "logit",
-        "Logprob",
-        "logprobs",
-        "lvce",
-        "markdownify",
-        "memorystream",
-        "menuitemcheckbox",
-        "menuitemradio",
-        "millis",
-        "mixtral",
-        "networkidle",
-        "nomic",
-        "ollama",
-        "openai",
-        "OPENROUTER",
-        "optillm",
-        "pelikhan",
-        "promptdom",
-        "promptfoo",
-        "promptjson",
-        "prompty",
-        "quoteify",
-        "qwen",
-        "RIPGREP",
-        "RULEID",
-        "SARIFF",
-        "smsg",
-        "socketserver",
-        "spinbutton",
-        "stringifying",
-        "structurify",
-        "sysr",
-        "tabletojson",
-        "TAVILY",
-        "Textify",
-        "treegrid",
-        "treesitter",
-        "tvly",
-        "typecheck",
-        "unfence",
-        "urllib",
-        "urlparse",
-        "venv",
-        "vsix",
-        "xpai"
-    ],
-    "sarif-viewer.connectToGithubCodeScanning": "on",
-    "cSpell.language": "en,en-US",
-    "cSpell.enabledFileTypes": {
-        "json": false
-    },
-    "files.associations": {
-        ".gitignore.genai": "ignore",
-    },
-    "files.eol": "\n",
-    "terminal.integrated.defaultProfile.windows": "Git Bash",
-    "peacock.remoteColor": "#110f00",
-    "mdmath.delimiters": "brackets",
-    "spellright.language": [
-        "en"
-    ],
-    "spellright.documentTypes": [
-        "markdown",
-        "latex",
-        "plaintext",
-        "mdx"
-    ],
-    "spellright.parserByClass": {
-        "mdx": {
-            "parser": "markdown"
-        }
-    },
-    "peacock.color": "#f9e64f",
-    // Extension management settings - Changed to TRUE to prevent popups
-    "extensions.ignoreRecommendations": true,
-    "extensions.autoCheckUpdates": true,
-    "extensions.autoUpdate": true,
-    "extensions.preferPreReleases": true,
-    "files.autoSave": "onFocusChange"
+  // Project-specific settings
+  "files.associations": {
+    "*.genai.mjs": "javascript",
+    "*.genai.mts": "typescript",
+    "*.genai.js": "javascript",
+    "*.genai.ts": "typescript"
+  },
+  
+  // Editor settings optimized for this project
+  "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit"
+  },
+  "editor.rulers": [100],
+  "editor.defaultFormatter": "esben.prettier-vscode",
+  "editor.bracketPairColorization.enabled": true,
+  
+  // Customize editor based on file type
+  "[javascript]": {
+    "editor.defaultFormatter": "esben.prettier-vscode"
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "esben.prettier-vscode"
+  },
+  "[json]": {
+    "editor.defaultFormatter": "esben.prettier-vscode"
+  },
+  "[jsonc]": {
+    "editor.defaultFormatter": "esben.prettier-vscode"
+  },
+  "[yaml]": {
+    "editor.defaultFormatter": "esben.prettier-vscode"
+  },
+  "[markdown]": {
+    "editor.defaultFormatter": "esben.prettier-vscode",
+    "editor.wordWrap": "on"
+  },
+  
+  // Project-specific path configurations
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "search.exclude": {
+    "**/node_modules": true,
+    "**/dist": true,
+    "**/out": true,
+    "**/.next": true,
+    "**/.yarn": true
+  },
+  
+  // Auto-lock groups for this workspace
+  "workbench.editor.autoLockGroups": {
+    "terminalEditor": true,
+    "default": true,
+    "workbench.editorinputs.searchEditorlnput": true,
+    "mainThreadWebview-markdown.preview": true,
+    "jupyter-notebook": true
+  },
+  
+  // Terminal settings
+  "terminal.integrated.defaultProfile.linux": "zsh",
+  "terminal.integrated.defaultProfile.windows": "Git Bash",
+  "terminal.integrated.defaultProfile.osx": "zsh",
+  
+  // VS Code tasks configuration
+  "task.autoDetect": "on",
+  
+  // Git & GitHub integration
+  "git.autofetch": true,
+  "git.confirmSync": false,
+  "github-actions.workflows.pinned.workflows": [".github/workflows/ci.yml"],
+  
+  // Azure settings
+  "azure.resourceFilter": [],
+  
+  // Specific settings for the GenAIScript project
+  "eslint.validate": ["javascript", "typescript"],
+  "eslint.workingDirectories": [
+    "./packages/cli",
+    "./packages/core",
+    "./packages/vscode"
+  ]
 }
