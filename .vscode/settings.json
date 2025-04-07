@@ -117,8 +117,8 @@
         }
     },
     "peacock.color": "#f9e64f",
-    // Extension management settings
-    "extensions.ignoreRecommendations": false,
+    // Extension management settings - Changed to TRUE to prevent popups
+    "extensions.ignoreRecommendations": true,
     "extensions.autoCheckUpdates": true,
     "extensions.autoUpdate": true,
     "extensions.preferPreReleases": true
