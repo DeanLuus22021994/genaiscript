@@ -1,0 +1,17 @@
+{
+  "extends": "../packages/tsconfig-base.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@core/*": ["../packages/core/src/*"],
+      "@cli/*": ["../packages/cli/src/*"],
+      "@vscode/*": ["../packages/vscode/src/*"],
+      "@utils/*": ["./__utils__/*"]
+    },
+    "types": ["jest", "node"]
+  },
+  "include": [
+    "**/*.ts",
+    "**/*.tsx"
+  ]
+}

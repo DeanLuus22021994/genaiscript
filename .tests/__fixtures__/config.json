@@ -1,0 +1,20 @@
+{
+  "name": "Test Project",
+  "version": "1.0.0",
+  "description": "A test project for GenAIScript",
+  "settings": {
+    "model": "gpt-4",
+    "temperature": 0.7,
+    "maxTokens": 2000
+  },
+  "prompts": [
+    {
+      "id": "greeting",
+      "content": "Say hello to the user"
+    },
+    {
+      "id": "help",
+      "content": "Provide help information"
+    }
+  ]
+}
